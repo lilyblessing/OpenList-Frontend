@@ -18,6 +18,8 @@
   "123_open_callback_url": "123 Open 回调网址",
   "pikpak": "PikPak",
   "pikpak_temp_dir": "PikPak 临时文件夹",
+  "pikpak_pat": "PikPak PAT",
+  "pikpak_pat_temp_dir": "PikPak PAT 临时文件夹",
   "thunder": "迅雷",
   "thunder_temp_dir": "迅雷临时文件夹",
   "thunder_browser": "迅雷浏览器",

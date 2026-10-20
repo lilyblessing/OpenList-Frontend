@@ -29,6 +29,7 @@ const OtherSettings = () => {
   const [pan123OpenTempDir, set123OpenTempDir] = createSignal("")
   const [pan123OpenCallbackUrl, set123OpenCallbackUrl] = createSignal("")
   const [pikpakTempDir, setPikPakTempDir] = createSignal("")
+  const [pikPakPATTempDir, setPikPakPATTempDir] = createSignal("")
   const [thunderTempDir, setThunderTempDir] = createSignal("")
   const [thunderBrowserTempDir, setThunderBrowserTempDir] = createSignal("")
   const [thunderXTempDir, setThunderXTempDir] = createSignal("")
@@ -78,6 +79,11 @@ const OtherSettings = () => {
   const [setPikPakLoading, setPikPak] = useFetch((): PResp<string> =>
     r.post("/admin/setting/set_pikpak", {
       temp_dir: pikpakTempDir(),
+    }),
+  )
+  const [setPikPakPATLoading, setPikPakPAT] = useFetch((): PResp<string> =>
+    r.post("/admin/setting/set_pikpak_pat", {
+      temp_dir: pikPakPATTempDir(),
     }),
   )
   const [setThunderLoading, setThunder] = useFetch((): PResp<string> =>
@@ -130,6 +136,9 @@ const OtherSettings = () => {
       )
       setPikPakTempDir(
         data.find((i) => i.key === "pikpak_temp_dir")?.value || "",
+      )
+      setPikPakPATTempDir(
+        data.find((i) => i.key === "pikpak_pat_temp_dir")?.value || "",
       )
       setThunderTempDir(
         data.find((i) => i.key === "thunder_temp_dir")?.value || "",
@@ -349,6 +358,29 @@ const OtherSettings = () => {
         loading={setPikPakLoading()}
         onClick={async () => {
           const resp = await setPikPak()
+          handleResp(resp, (data) => {
+            notify.success(data)
+          })
+        }}
+      >
+        {t("global.save")}
+      </Button>
+      <Heading my="$2">{t("settings_other.pikpak_pat")}</Heading>
+      <FormControl w="$full" display="flex" flexDirection="column">
+        <FormLabel for="pikpak_pat_temp_dir" display="flex" alignItems="center">
+          {t("settings_other.pikpak_pat_temp_dir")}
+        </FormLabel>
+        <FolderChooseInput
+          id="pikpak_pat_temp_dir"
+          value={pikPakPATTempDir()}
+          onChange={(path) => setPikPakPATTempDir(path)}
+        />
+      </FormControl>
+      <Button
+        my="$2"
+        loading={setPikPakPATLoading()}
+        onClick={async () => {
+          const resp = await setPikPakPAT()
           handleResp(resp, (data) => {
             notify.success(data)
           })

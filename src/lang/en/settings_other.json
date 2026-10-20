@@ -18,6 +18,8 @@
   "123_open_callback_url": "123 Open Callback URL",
   "pikpak": "PikPak",
   "pikpak_temp_dir": "PikPak Temp Dir",
+  "pikpak_pat": "PikPak PAT",
+  "pikpak_pat_temp_dir": "PikPak PAT Temp Dir",
   "thunder": "Thunder",
   "thunder_temp_dir": "Thunder Temp Dir",
   "thunder_browser": "ThunderBrowser",
